@@ -22,3 +22,7 @@ nextflow run -profile singularity --genome examples/Ilumi1.3-grep13255.fasta --p
 ```
 
 (Depending on if you have Docker or Singularity installed)
+
+### Alternatives
+
+If PPX mode doesn't work, could try a pipeline for training of Augustus using `busco --long`, along with tblastn/exonerate the luciferase genes & converting them to Augustus `hints` for normal mode ab inito prediction
