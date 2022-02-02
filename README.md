@@ -9,6 +9,7 @@ Command error:
   augustus: ERROR
   augustInvalid block no. in SubstateModel::blockNoOfB
 ```
+Raised an issue with the Augustus developers: https://github.com/Gaius-Augustus/Augustus/issues/333
 
 ### To test:
 
