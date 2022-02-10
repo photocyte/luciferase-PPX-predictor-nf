@@ -21,7 +21,7 @@ input:
  path prfl_file
 shell:
 '''
-augustus --species=fly --proteinprofile=!{prfl_file} !{genome_fasta}
+augustus --species=fly --proteinprofile=!{prfl_file} --UTR=off !{genome_fasta}
 '''
 }
 
