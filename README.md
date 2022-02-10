@@ -2,14 +2,7 @@
 A Nextflow pipeline to try and automate some aspects of luciferase gene ab inito structure prediction
 
 ### Status
-Despite a good MSA & seemingly good profile, augustus errors out.
-```
-Command error:
-  
-  augustus: ERROR
-  augustInvalid block no. in SubstateModel::blockNoOfB
-```
-Raised an issue with the Augustus developers: https://github.com/Gaius-Augustus/Augustus/issues/333
+Working, but not really validated for quality of the predictions.
 
 ### To test:
 
@@ -23,6 +16,8 @@ nextflow run -profile singularity --genome examples/Ilumi1.3-grep13255.fasta --p
 
 (Depending on if you have Docker or Singularity installed)
 
-### Alternatives
+### Alternatives / future directions
 
-If PPX mode doesn't work, could try a pipeline for training of Augustus using `busco --long`, along with tblastn/exonerate the luciferase genes & converting them to Augustus `hints` for normal mode ab inito prediction
+Could try a pipeline for training of Augustus using `busco --long`, along with tblastn/exonerate the luciferase genes & converting them to Augustus `hints` for normal mode ab inito prediction
+
+Could also use Nextflow `splitFasta` to parallelize across the independent FASTA records. An even faster approach might be to limit the prediction to specific slices of FASTA records around tblastn hits: This is already done by things like MAKER for the `prot2genome` prediction I believe.
