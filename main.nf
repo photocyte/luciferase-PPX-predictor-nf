@@ -3,6 +3,7 @@ nextflow.enable.dsl=2
 // See https://bioinf.uni-greifswald.de/augustus/binaries/tutorial/ppx.html
 
 process msa2prfl_run {
+publishDir "results",mode:"link",overwrite:"true"
 input:
  path msa_fasta
 output:
@@ -16,12 +17,15 @@ msa2prfl.pl --qij=/usr/local/config/profile/default.qij --prefix_from_seqnames -
 }
 
 process augustus_ppx_run {
+publishDir "results",mode:"link",overwrite:"true"
 input:
  path genome_fasta 
  path prfl_file
+output:
+ path "augustus_out_${genome_fasta}.gff3"
 shell:
 '''
-augustus --species=fly --proteinprofile=!{prfl_file} --UTR=off !{genome_fasta}
+augustus --species=fly --proteinprofile=!{prfl_file} --UTR=off --gff3=on !{genome_fasta} > augustus_out_!{genome_fasta}.gff3
 '''
 }
 
